@@ -5,9 +5,9 @@ BUILDDIR := ./build
 SRCDIR := ./src
 SRCEXT := c
 SRCS := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-OBJS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SRCS::.$(SRCEXT)=.o))
+OBJS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SRCS:.$(SRCEXT)=.o))
 INCLUDES := -I ./include
-LIBS := -l ./libs
+LIBS := -L ./libs
 TEST_TARGET := ./bin/test_main
 TEST_MAIN := tests/test_main.cpp
 
@@ -16,11 +16,10 @@ all: clean $(TARGET)
 
 $(TARGET): $(OBJS)
 	@echo "Build execute file..."
-	$(CC) -O3 $^ -o $@ $(LIBS)
+	$(CC) $^ -o $@ $(LIBS) -O3
 
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCDIR)
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@echo "Build objects..."
-	$(RM) $(BUILDDIR)/*
 	$(CC) $(CFLGAS) -c -o $@ $< $(INCLUDES)
 
 .PHONY: test
