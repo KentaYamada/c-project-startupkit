@@ -31,3 +31,9 @@ test: $(TEST_MAIN)
 clean:
 	@echo "Clean files..."
 	$(RM) $(TARGET) $(BUILDDIR)/*
+
+start.docker:
+	@cd ./docker/; docker-compose up -d; cd ../
+
+stop.docker:
+	@cd ./docker/; docker-compose down; cd ../

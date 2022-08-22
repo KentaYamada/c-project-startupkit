@@ -54,3 +54,6 @@ dkms.conf
 # Compiled files
 bin/*
 build/*
+
+# docker .env file
+docker/.env

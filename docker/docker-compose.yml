@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  build:
+    container_name: build-server
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+    volumes:
+      - ${PROJECT_ROOT}:${WORKING_DIR}
+    working_dir: ${WORKING_DIR}
+    tty: true
+  test:
+    container_name: test-server
+    build:
+      context: ./test
+      dockerfile: Dockerfile
+    volumes:
+      - ${PROJECT_ROOT}:${WORKING_DIR}
+    working_dir: ${WORKING_DIR}
+    tty: true
