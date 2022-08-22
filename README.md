@@ -60,3 +60,16 @@ If you start specific service, run the following command.
 cd ./docker
 docker-compose up -d service_name
 ```
+
+## Docker setup
+1. create .env file  
+``` sh
+cd ./docker
+cp -a .env.default .env
+```
+
+2. set env variables (optional)
+
+### Note
+It uses `alpine linux` by default.  
+If it applies to your envirnment, modify Dockerfile.
